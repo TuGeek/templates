@@ -11,7 +11,9 @@ services:
        MYSQL_DATABASE: wordpress
        MYSQL_USER: wordpress
        MYSQL_PASSWORD: wordpress
-
+       VIRTUAL_HOST: ${VIRTUAL_HOST}
+       LETSENCRYPT_HOST: ${VIRTUAL_HOST}
+       LETSENCRYPT_EMAIL: ${LETSENCRYPT_EMAIL}
    wordpress:
      image: wordpress:latest
      ports:
@@ -24,3 +26,7 @@ services:
 
 volumes:
     db_data:
+networks:
+  default:
+    external:
+      name: dockernet
